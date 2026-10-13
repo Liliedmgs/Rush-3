@@ -73,9 +73,10 @@ Rush 3/
 ├── README.md                      qui a fait quoi + comment lancer le code
 ├── PLAN.md                        ce fichier
 ├── requirements.txt               liste des bibliothèques Python et leurs versions
-├── data/
+├── data_raw/                      données d'origine, jamais modifiées à la main
 │   ├── train.csv
 │   └── test.csv
+├── data_clean/                    données nettoyées, produites par le code (jamais à la main)
 ├── src/
 │   └── common.py                  fonctions partagées (chargement, nettoyage)
 ├── notebooks/
@@ -121,10 +122,10 @@ Rien d'autre ne peut commencer avant, donc on le fait à trois sur un seul écra
   git config user.email
   ```
   Pour corriger : `git config user.name "Prénom Nom"` et `git config user.email "adresse@..."`.
-- [ ] Créer les dossiers `data/`, `src/`, `notebooks/`, `figures/`, `results/`, `rapport/` et déplacer les deux CSV dans `data/`.
+- [ ] Créer les dossiers `data_raw/`, `src/`, `notebooks/`, `figures/`, `results/`, `rapport/` et déplacer les deux CSV dans `data_raw/`.
 - [ ] Créer `requirements.txt` (pandas, numpy, scikit-learn, matplotlib, seaborn, jupyter) puis installer : `pip install -r requirements.txt`. Une fois que tout marche, noter les versions exactes avec `pip freeze` : deux versions différentes d'une bibliothèque peuvent donner des chiffres différents.
 - [ ] **A** écrit `src/common.py` pendant que B et C regardent. Il contient :
-  - `load_train()` : lit `data/train.csv`, supprime `Unnamed: 0` et `id`, crée une colonne `insatisfait` qui vaut 1 si `satisfaction` est « neutral or dissatisfied », sinon 0.
+  - `load_train()` : lit `data_raw/train.csv`, supprime `Unnamed: 0` et `id`, crée une colonne `insatisfait` qui vaut 1 si `satisfaction` est « neutral or dissatisfied », sinon 0.
   - `load_test()` : même chose pour `test.csv`. **Appelée uniquement dans le notebook 04.**
   - `RATING_COLS` : la liste des 14 colonnes de notes.
   - `LANDING_COLS` : la liste des colonnes connues à l'atterrissage (voir étape 3).
