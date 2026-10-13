@@ -6,6 +6,35 @@ Ce document dit qui fait quoi, dans quel ordre, et pourquoi. Il est écrit pour 
 
 ---
 
+## Où on en est (13 octobre)
+
+### Fait
+
+- [x] Dépôt organisé : `data_raw/`, `data_clean/`, `src/`, `notebooks/`.
+- [x] Règles de nettoyage écrites dans `src/common.py` (fonction `nettoyer`).
+- [x] `train.csv` nettoyé → `data_clean/train_clean.csv` (notebook 01).
+- [x] `test.csv` nettoyé → `data_clean/test_clean.csv` (script `src/nettoyer_test.py`), avec les mêmes règles et sans rien regarder du contenu.
+
+> **Attention :** `src/nettoyer_test.py` lit `test.csv` uniquement pour le nettoyer. Personne n'ouvre `test_clean.csv` dans les notebooks 01, 02 ou 03. Pour la vérification de l'étape 5, chercher aussi `test_clean` dans le dépôt.
+
+### Reste à faire, d'après la consigne
+
+Le nettoyage n'est que la préparation : aucun livrable n'est encore commencé.
+
+- [ ] **Décider qui est A, B et C**, et l'écrire ici et dans le README.
+- [ ] **Explorer les données**, sur `train` seulement : graphiques et tableaux (mécontents par classe, motif, âge ; où sont les `0` ; retards extrêmes). → Étape 1
+- [ ] **Expliquer la satisfaction**, avec les 14 notes. Pour chaque facteur recommandé : est-il lié ? la compagnie peut-elle agir ? est-ce une cause ? → Étape 2
+- [ ] **Prédire les mécontents**, sans les 14 notes : liste justifiée de ce qu'on sait à l'atterrissage, règle simple sans modèle, au moins deux modèles comparés sans `test`, choix du modèle avec le coût de ses erreurs. → Étape 3
+- [ ] **Protection des données** : conditions pour que ce soit acceptable (enfants compris), chaque information du modèle est-elle acceptable, ce que voit l'employé sur un passager signalé. → Étape 4
+- [ ] **Contrôle final sur `test`**, une seule fois, tout à la fin. → Étape 5
+- [ ] **Rapport PDF**, 8 pages max, avec un résumé d'une page pour la directrice en ouverture. → Étape 6
+- [ ] **Code reproductible** : mêmes chiffres à chaque lancement. → Étape 7
+- [ ] **Oral** de 10 minutes puis questions. → Étape 8
+- [ ] **README** : qui a fait quoi (il ne contient que le titre pour l'instant).
+- [ ] **Historique git** : des commits de chacune des trois, depuis son propre compte.
+
+---
+
 ## 1. Ce qu'on doit rendre
 
 | Livrable | Contraintes |
