@@ -38,4 +38,3 @@ Classées par priorité : d'abord ce qui est le plus sûr et le moins cher.
 - **Seulement trois groupes de passagers comparés.** Les voyageurs en Eco Plus et les voyageurs personnels en Business n'ont pas été analysés à part.
 
 
-## Les limites
