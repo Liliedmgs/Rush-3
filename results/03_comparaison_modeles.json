@@ -71,5 +71,33 @@
       ]
     }
   ],
-  "modele_choisi": "Arbre de décision (4 niveaux)"
+  "modele_choisi": "Arbre de décision (4 niveaux)",
+  "deploiement": {
+    "modele": "Arbre de décision (4 niveaux)",
+    "variables": [
+      "Flight Distance",
+      "Departure Delay in Minutes",
+      "Arrival Delay in Minutes",
+      "Customer Type",
+      "Type of Travel",
+      "Class"
+    ],
+    "versions": [
+      {
+        "nom": "Arbre testé (7 informations)",
+        "precision_moyenne": 0.9551,
+        "precision_sans_mineurs": 0.9521
+      },
+      {
+        "nom": "Arbre déployé (sans l'âge)",
+        "precision_moyenne": 0.9563,
+        "precision_sans_mineurs": 0.9494
+      },
+      {
+        "nom": "Règle simple (voyage personnel)",
+        "precision_moyenne": 0.8965,
+        "precision_sans_mineurs": 0.8991
+      }
+    ]
+  }
 }
