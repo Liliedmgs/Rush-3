@@ -4,7 +4,7 @@
 
 | Facteur | Lié à la satisfaction ? | La compagnie peut agir ? | Est-ce une cause ? |
 |---|---|---|---|
-| Embarquement en ligne | Très fort : écart de 73,4 points ; reste important dans les 3 groupes ; 4e à la vérification par forêt | Oui : application, site | |
+| Embarquement en ligne | Très fort : écart de 73,4 points ; reste important dans les 3 groupes ; 4e à la vérification par forêt | Oui : application, site | Cause probable : le lien reste fort à profil égal, et l'embarquement se passe avant le vol, donc l'effet de halo est peu probable. À confirmer par un test. |
 | Wifi à bord | Très fort : écart de 66,5 points ; 2e à la vérification par forêt | Oui : équipement des avions | |
 | Réservation en ligne | Moyen (36,2), mais très fort chez les voyageurs personnels en Eco (72,0) | Oui : site, application | |
 | Divertissement | Fort (50,9), mais disparaît chez les voyageurs personnels en Eco (−0,1) | Oui | |
