@@ -16,7 +16,7 @@ La bonne mesure n'est donc pas le pourcentage de bonnes réponses sur tous les p
 
 ## 4.2 Ce que le modèle a le droit d'utiliser
 
-Le modèle n'utilise que ce que la compagnie connaît au moment où l'avion atterrit :
+Les modèles ont été comparés avec ce que la compagnie connaît au moment où l'avion atterrit :
 
 | Information | D'où elle vient |
 |---|---|
@@ -27,7 +27,7 @@ Le modèle n'utilise que ce que la compagnie connaît au moment où l'avion atte
 | Distance du vol | vol |
 | Retards au départ et à l'arrivée | mesurés par la compagnie |
 
-Les 14 notes de service sont exclues : le questionnaire est rempli après le vol, et la plupart des passagers n'y répondent jamais. Le genre est exclu aussi : il n'améliore pas le modèle (section 4.4).
+Les 14 notes de service sont exclues : le questionnaire est rempli après le vol, et la plupart des passagers n'y répondent jamais. Le genre est exclu aussi : il n'améliore pas le modèle (section 4.4). La version déployée du modèle retenu n'utilise pas non plus l'âge (section 4.4).
 
 ## 4.3 Comparer sans tricher
 
@@ -61,9 +61,17 @@ Précision sur les 10 % approchés et bénéfice pour 1 000 passagers, validatio
 
 - **Le genre n'apporte rien**, avec les deux modèles : il n'est pas utilisé.
 - **L'âge n'apporte rien à l'arbre retenu** : sans lui, l'arbre fait aussi bien sur 3 des 5 parts et légèrement mieux sur les 2 autres (+12 € pour 1 000 passagers, un écart inférieur à la variation normale entre les parts). Il n'est utile qu'au gradient boosting (100 € pour 1 000 passagers).
-- **La règle « aucun mineur n'est signalé »** (section 6.3) coûte très peu à l'arbre : la précision passe de 95,5 % à 95,2 %, soit 30 € de moins pour 1 000 passagers.
+**Décision : l'arbre est déployé sans l'âge.** Une donnée personnelle qui n'améliore pas le résultat ne doit pas être utilisée (minimisation). L'âge reste lu pour une seule chose : appliquer la règle « aucun mineur n'est signalé » (section 6.3).
 
-Conséquence pour la protection des données : avec l'arbre, l'âge n'est pas nécessaire. Le contrôle final (section 4.7) a été fait avec l'arbre à 7 informations, tel qu'il avait été choisi ; il n'a pas été refait, car le fichier de test ne s'utilise qu'une fois. Pour un déploiement réel, l'arbre sans l'âge est la version à privilégier : même bénéfice, et le modèle ne classe plus personne selon son âge. L'âge ne sert alors qu'à appliquer la règle « aucun mineur signalé ».
+| Version (validation croisée) | Tous les passagers | Aucun mineur signalé |
+|---|---|---|
+| Arbre testé (7 informations) | 95,5 % · 5 551 € | 95,2 % · 5 521 € |
+| **Arbre déployé (sans l'âge)** | **95,6 % · 5 563 €** | **94,9 % · 5 494 €** |
+| Règle simple (voyage personnel) | 89,7 % · 4 965 € | 89,9 % · 4 991 € |
+
+Avec la règle des mineurs, la version déployée rapporte 5 494 € pour 1 000 passagers, soit 503 € de plus que la règle simple dans les mêmes conditions. Exclure les mineurs coûte 69 € à l'arbre sans l'âge (30 € à l'arbre avec l'âge) : c'est le prix de la protection des enfants, à peine plus de 1 % du gain.
+
+Le contrôle final (section 4.7) a été fait avant cette décision, avec l'arbre à 7 informations. Il n'a pas été refait, car le fichier de test ne s'utilise qu'une fois.
 
 ## 4.5 Ce que coûtent les erreurs
 
@@ -83,20 +91,20 @@ Trois critères : le bénéfice, la facilité à l'expliquer, et les données pe
 |---|---|---|---|
 | Bénéfice pour 1 000 passagers | 4 965 € | 5 551 € | 5 653 € |
 | Facile à expliquer | oui | oui, en une page | non |
-| Données nécessaires | motif du voyage | 7 informations | 7 informations |
+| Données nécessaires | motif du voyage | 6 informations, sans l'âge | 7 informations |
 
 **Nous retenons l'arbre de décision.** Il rapporte 586 € de plus que la règle simple pour 1 000 passagers, et seulement 102 € de moins que le gradient boosting. Surtout, il se lit comme une suite de questions que la directrice et les équipes au sol peuvent comprendre et contester :
 
 1. Le passager voyage-t-il en Eco ?
 2. Voyage-t-il pour un motif personnel ?
 3. Est-il client fidèle ?
-4. Son vol est-il arrivé avec plus de 5 minutes de retard ? Quel est son âge ?
+4. Son vol est-il arrivé avec plus de 5 minutes de retard ?
 
 Un voyageur personnel est presque toujours classé à risque, quelle que soit sa classe. Un voyageur d'affaires fidèle en Business est presque toujours satisfait. Entre les deux, c'est le retard à l'arrivée et la fidélité qui font la différence.
 
 ## 4.7 Le résultat final sur le fichier de test
 
-Le modèle a été appris sur tout le fichier d'analyse, puis appliqué une seule fois aux 25 976 passagers du fichier de test, jamais vus jusque-là (56,1 % de mécontents).
+Le modèle a été appris sur tout le fichier d'analyse, puis appliqué une seule fois aux 25 976 passagers du fichier de test, jamais vus jusque-là (56,1 % de mécontents). Ce contrôle a été fait avec l'arbre à 7 informations, âge compris, avant la décision de déployer la version sans l'âge ; sur le fichier d'analyse, les deux versions font jeu égal (95,5 % et 95,6 %).
 
 | Stratégie | Précision (validation) | Précision (test) | Bénéfice sur le test pour 1 000 passagers |
 |---|---|---|---|

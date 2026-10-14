@@ -2,6 +2,10 @@
 
 À lancer une seule fois, quand le modèle est choisi et que plus rien ne changera.
 Si les chiffres sont moins bons qu'en validation croisée, on ne touche à rien.
+
+Exécuté le 14/10/2026 avec l'arbre à 7 informations (LANDING_COLS, âge compris).
+La version déployée sans l'âge (modeles.construire_deploiement) a été décidée après,
+sur train.csv seulement ; ce fichier n'est pas modifié pour qu'il reproduise le test réel.
 """
 from datetime import datetime
 

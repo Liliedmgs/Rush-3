@@ -27,18 +27,5 @@
       "nom": "avec le genre",
       "precision_moyenne": 0.9653
     }
-  ],
-  "mineurs": {
-    "modele": "Arbre de décision (4 niveaux)",
-    "essais": [
-      {
-        "nom": "tous les passagers",
-        "precision_moyenne": 0.9551
-      },
-      {
-        "nom": "sans signaler les mineurs",
-        "precision_moyenne": 0.9521
-      }
-    ]
-  }
+  ]
 }

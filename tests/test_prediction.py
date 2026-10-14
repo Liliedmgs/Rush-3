@@ -49,3 +49,19 @@ def test_modeles_tolerent_une_categorie_inconnue():
 def test_regle_simple():
 	df = _passagers()
 	assert (regle_simple(df) == (df["Type of Travel"] == "Personal Travel")).all()
+
+
+def test_deploiement_sans_age_ni_genre():
+	from rush3.core.schema import RATING_COLS
+	from rush3.prediction.modeles import DEPLOIEMENT_COLS
+
+	assert "Age" not in DEPLOIEMENT_COLS and "Gender" not in DEPLOIEMENT_COLS
+	assert not set(DEPLOIEMENT_COLS) & set(RATING_COLS)
+
+
+def test_aucun_mineur_signale():
+	from rush3.prediction.modeles import exclure_mineurs
+
+	df = pd.DataFrame({"Age": [12, 30, 17, 45]})
+	scores = exclure_mineurs(df, np.array([0.9, 0.5, 0.8, 0.4]))
+	assert (scores[[0, 2]] < scores[[1, 3]].min()).all()

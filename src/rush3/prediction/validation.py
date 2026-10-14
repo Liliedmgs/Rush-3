@@ -3,9 +3,17 @@ import numpy as np
 from sklearn.model_selection import StratifiedKFold
 
 from rush3.core.config import SEED
-from rush3.core.schema import CIBLE, LANDING_CATEGORIELLES, LANDING_COLS, LANDING_NUMERIQUES
+from rush3.core.schema import CIBLE, LANDING_CATEGORIELLES, LANDING_NUMERIQUES
 from rush3.prediction.metriques import precision_top
-from rush3.prediction.modeles import MODELES, construire, regle_simple
+from rush3.prediction.modeles import (
+	DEPLOIEMENT_CATEGORIELLES,
+	DEPLOIEMENT_NUMERIQUES,
+	MODELE_CHOISI,
+	MODELES,
+	construire,
+	exclure_mineurs,
+	regle_simple,
+)
 
 N_BLOCS = 5
 
@@ -73,21 +81,32 @@ def essais_variables_sensibles(df, nom):
 	]
 
 
-def effet_exclusion_mineurs(df, nom, age_min=18):
-	"""Règle de la partie protection des données : aucun mineur n'est signalé.
-
-	Les mineurs reçoivent le score le plus bas : les 10 % approchés sont pris parmi les adultes.
-	"""
-	resultats = {"tous les passagers": [], "sans signaler les mineurs": []}
-	for i_app, i_val in _blocs(df):
-		modele = construire(nom)
-		modele.fit(df[LANDING_COLS].iloc[i_app], df[CIBLE].iloc[i_app])
-		val = df.iloc[i_val]
-		scores = modele.predict_proba(val[LANDING_COLS])[:, 1]
-		resultats["tous les passagers"].append(precision_top(val[CIBLE], scores))
-		scores_adultes = np.where(val["Age"] < age_min, -1.0, scores)
-		resultats["sans signaler les mineurs"].append(precision_top(val[CIBLE], scores_adultes))
-	return [
-		{"nom": essai, "precision_moyenne": round(float(np.mean(r)), 4)}
-		for essai, r in resultats.items()
-	]
+def evaluer_deploiement(df):
+	"""Version testée (7 informations), version déployée (sans l'âge) et règle simple,
+	avec et sans la règle « aucun mineur signalé »."""
+	versions = {
+		"Arbre testé (7 informations)": (LANDING_NUMERIQUES, LANDING_CATEGORIELLES),
+		"Arbre déployé (sans l'âge)": (DEPLOIEMENT_NUMERIQUES, DEPLOIEMENT_CATEGORIELLES),
+		"Règle simple (voyage personnel)": None,
+	}
+	resultats = []
+	for version, variables in versions.items():
+		tous, sans_mineurs = [], []
+		for i_app, i_val in _blocs(df):
+			val = df.iloc[i_val]
+			if variables is None:
+				scores = regle_simple(val).astype(float)
+			else:
+				num, cat = variables
+				colonnes = list(num) + list(cat)
+				modele = construire(MODELE_CHOISI, num, cat)
+				modele.fit(df[colonnes].iloc[i_app], df[CIBLE].iloc[i_app])
+				scores = modele.predict_proba(val[colonnes])[:, 1]
+			tous.append(precision_top(val[CIBLE], scores))
+			sans_mineurs.append(precision_top(val[CIBLE], exclure_mineurs(val, scores)))
+		resultats.append({
+			"nom": version,
+			"precision_moyenne": round(float(np.mean(tous)), 4),
+			"precision_sans_mineurs": round(float(np.mean(sans_mineurs)), 4),
+		})
+	return resultats
