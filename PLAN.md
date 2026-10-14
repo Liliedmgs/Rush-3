@@ -24,9 +24,9 @@ Le nettoyage n'est que la préparation : aucun livrable n'est encore commencé.
 - [ ] **On fait tout à trois**, étape par étape, en suivant le guide de la section 9. A, B et C désignent seulement qui tient le clavier et qui signe la partie : l'écrire ici et dans le README.
 - [ ] **Explorer les données**, sur `train` seulement : graphiques et tableaux (mécontents par classe, motif, âge ; où sont les `0` ; retards extrêmes). → Étape 1
 - [ ] **Expliquer la satisfaction**, avec les 14 notes. Pour chaque facteur recommandé : est-il lié ? la compagnie peut-elle agir ? est-ce une cause ? → Étape 2
-- [ ] **Prédire les mécontents**, sans les 14 notes : liste justifiée de ce qu'on sait à l'atterrissage, règle simple sans modèle, au moins deux modèles comparés sans `test`, choix du modèle avec le coût de ses erreurs. → Étape 3
+- [x] **Prédire les mécontents**, sans les 14 notes : liste justifiée de ce qu'on sait à l'atterrissage, règle simple sans modèle, au moins deux modèles comparés sans `test`, choix du modèle avec le coût de ses erreurs. → Étape 3
 - [ ] **Protection des données** : conditions pour que ce soit acceptable (enfants compris), chaque information du modèle est-elle acceptable, ce que voit l'employé sur un passager signalé. → Étape 4
-- [ ] **Contrôle final sur `test`**, une seule fois, tout à la fin. → Étape 5
+- [x] **Contrôle final sur `test`**, une seule fois, tout à la fin. → Étape 5
 - [ ] **Rapport PDF**, 8 pages max, avec un résumé d'une page pour la directrice en ouverture. → Étape 6
 - [ ] **Code reproductible** : mêmes chiffres à chaque lancement. → Étape 7
 - [ ] **Oral** de 10 minutes puis questions. → Étape 8
@@ -204,7 +204,7 @@ But : dire à la directrice où mettre son budget. Ici les 14 notes sont autoris
 
 But : classer les passagers à l'atterrissage pour approcher les 10 % les plus à risque.
 
-- [ ] **Établir la liste des variables connues à l'atterrissage** et la justifier (le sujet dit que c'est à nous de l'établir) :
+- [x] **Établir la liste des variables connues à l'atterrissage** et la justifier (le sujet dit que c'est à nous de l'établir) :
 
   | Variable | Connue à l'atterrissage ? | Remarque |
   |---|---|---|
@@ -215,12 +215,12 @@ But : classer les passagers à l'atterrissage pour approcher les 10 % les plus �
   | Genre | oui | n'apporte presque rien (57,3 % contre 56,1 %) → l'exclure se défend bien |
   | Les 14 notes | **non** | questionnaire rempli après le vol |
 
-- [ ] **Découper `train.csv` pour comparer les modèles**, puisque `test.csv` est interdit. On utilise la validation croisée à 5 blocs : on coupe les données en 5 parts, on entraîne sur 4, on mesure sur la 5e, et on recommence 5 fois en changeant la part mise de côté. On obtient 5 mesures, donc une moyenne et une idée de sa stabilité.
+- [x] **Découper `train.csv` pour comparer les modèles**, puisque `test.csv` est interdit. On utilise la validation croisée à 5 blocs : on coupe les données en 5 parts, on entraîne sur 4, on mesure sur la 5e, et on recommence 5 fois en changeant la part mise de côté. On obtient 5 mesures, donc une moyenne et une idée de sa stabilité.
   ```python
   from sklearn.model_selection import StratifiedKFold
   cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
   ```
-- [ ] **Écrire la mesure métier** (une seule fois, réutilisée partout) :
+- [x] **Écrire la mesure métier** (une seule fois, réutilisée partout) :
   ```python
   import numpy as np
 
@@ -233,17 +233,17 @@ But : classer les passagers à l'atterrissage pour approcher les 10 % les plus �
   def benefice_pour_1000(precision):
       return 100 * (100 * precision - 40)
   ```
-- [ ] **Les points de comparaison sans modèle** : approche au hasard, puis la règle simple (voyageurs personnels). Les mesurer avec la même validation croisée.
-- [ ] **Modèle 1 : régression logistique.** Simple, et chaque variable reçoit un poids qu'on peut expliquer à la directrice.
-- [ ] **Modèle 2 : arbre de décision peu profond** (3 ou 4 niveaux). Il se lit comme une suite de questions : « voyage personnel ? → classe Eco ? → … ».
-- [ ] **Modèle 3 (si le temps le permet) : forêt aléatoire ou gradient boosting.** Souvent plus performant, mais c'est une boîte noire.
-- [ ] Mettre le prétraitement (remplissage des valeurs manquantes, encodage des catégories) **dans un `Pipeline` scikit-learn**. Sinon le nettoyage « voit » les données de validation et les scores sont trop optimistes.
-- [ ] Tableau comparatif : pour chaque stratégie, précision sur le top 10 %, bénéfice pour 1 000 passagers, et écart entre les 5 blocs.
-- [ ] **Coût des erreurs**, en mots simples :
+- [x] **Les points de comparaison sans modèle** : approche au hasard, puis la règle simple (voyageurs personnels). Les mesurer avec la même validation croisée.
+- [x] **Modèle 1 : régression logistique.** Simple, et chaque variable reçoit un poids qu'on peut expliquer à la directrice.
+- [x] **Modèle 2 : arbre de décision peu profond** (3 ou 4 niveaux). Il se lit comme une suite de questions : « voyage personnel ? → classe Eco ? → … ».
+- [x] **Modèle 3 (si le temps le permet) : forêt aléatoire ou gradient boosting.** Souvent plus performant, mais c'est une boîte noire.
+- [x] Mettre le prétraitement (remplissage des valeurs manquantes, encodage des catégories) **dans un `Pipeline` scikit-learn**. Sinon le nettoyage « voit » les données de validation et les scores sont trop optimistes.
+- [x] Tableau comparatif : pour chaque stratégie, précision sur le top 10 %, bénéfice pour 1 000 passagers, et écart entre les 5 blocs.
+- [x] **Coût des erreurs**, en mots simples :
   - Fausse alerte (on approche un passager satisfait) : 40 € dépensés pour rien.
   - Oubli (un insatisfait pas approché) : 100 € de gain espéré manqués. Avec une capacité de 10 % et 56,7 % d'insatisfaits, la grande majorité sera forcément oubliée : le dire clairement.
-- [ ] **Choisir le modèle à déployer** et l'argumenter sur trois critères : bénéfice, facilité d'explication, données personnelles nécessaires. Si un modèle complexe ne rapporte que quelques euros de plus que la règle simple, recommander le plus simple est une conclusion valable.
-- [ ] Tester le modèle avec et sans l'âge, avec et sans le genre : combien perd-on ? Ce chiffre sert directement à A pour la partie protection des données.
+- [x] **Choisir le modèle à déployer** et l'argumenter sur trois critères : bénéfice, facilité d'explication, données personnelles nécessaires. Si un modèle complexe ne rapporte que quelques euros de plus que la règle simple, recommander le plus simple est une conclusion valable.
+- [x] Tester le modèle avec et sans l'âge, avec et sans le genre : combien perd-on ? Ce chiffre sert directement à A pour la partie protection des données.
 
 ### Étape 4 — Protection des données (A, jour 2)
 
@@ -260,12 +260,12 @@ Les numéros d'articles sont des points de départ : relisez le texte avant de l
 
 À faire **une seule fois**, quand le modèle est définitivement choisi et que plus rien ne changera.
 
-- [ ] Créer `04_evaluation_finale.ipynb`. En haut, une cellule de texte : « Ce notebook est le seul qui lit test.csv. Exécuté une fois, le [date et heure]. »
-- [ ] Réentraîner le modèle choisi sur tout `train.csv`, l'appliquer à `test.csv`, calculer la précision sur le top 10 % et le bénéfice pour 1 000 passagers.
-- [ ] Appliquer aussi la règle simple à `test.csv`, pour que la comparaison finale soit honnête.
-- [ ] Enregistrer les chiffres dans `results/`.
-- [ ] **Si le résultat déçoit, on ne retouche pas le modèle.** On rapporte le chiffre tel quel et on commente l'écart avec la validation croisée. Modifier le modèle après avoir vu le test, c'est exactement ce que le sujet interdit.
-- [ ] Vérification : chercher `load_test` et `test.csv` dans tout le dépôt. Ils ne doivent apparaître que dans `common.py` (la définition) et le notebook 04.
+- [x] Créer `04_evaluation_finale.ipynb`. En haut, une cellule de texte : « Ce notebook est le seul qui lit test.csv. Exécuté une fois, le [date et heure]. »
+- [x] Réentraîner le modèle choisi sur tout `train.csv`, l'appliquer à `test.csv`, calculer la précision sur le top 10 % et le bénéfice pour 1 000 passagers.
+- [x] Appliquer aussi la règle simple à `test.csv`, pour que la comparaison finale soit honnête.
+- [x] Enregistrer les chiffres dans `results/`.
+- [x] **Si le résultat déçoit, on ne retouche pas le modèle.** On rapporte le chiffre tel quel et on commente l'écart avec la validation croisée. Modifier le modèle après avoir vu le test, c'est exactement ce que le sujet interdit.
+- [x] Vérification : chercher `load_test` et `test.csv` dans tout le dépôt. Ils ne doivent apparaître que dans `common.py` (la définition) et le notebook 04.
 
 ### Étape 6 — Rapport (B assemble, chacun écrit sa partie, jour 2)
 

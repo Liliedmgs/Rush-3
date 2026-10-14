@@ -3,7 +3,7 @@ import numpy as np
 from sklearn.model_selection import StratifiedKFold
 
 from rush3.core.config import SEED
-from rush3.core.schema import CIBLE, LANDING_CATEGORIELLES, LANDING_NUMERIQUES
+from rush3.core.schema import CIBLE, LANDING_CATEGORIELLES, LANDING_COLS, LANDING_NUMERIQUES
 from rush3.prediction.metriques import precision_top
 from rush3.prediction.modeles import MODELES, construire, regle_simple
 
@@ -70,4 +70,24 @@ def essais_variables_sensibles(df, nom):
 	return [
 		{"nom": essai, "precision_moyenne": round(float(evaluer_modele(df, nom, num, cat).mean()), 4)}
 		for essai, (num, cat) in essais.items()
+	]
+
+
+def effet_exclusion_mineurs(df, nom, age_min=18):
+	"""Règle de la partie protection des données : aucun mineur n'est signalé.
+
+	Les mineurs reçoivent le score le plus bas : les 10 % approchés sont pris parmi les adultes.
+	"""
+	resultats = {"tous les passagers": [], "sans signaler les mineurs": []}
+	for i_app, i_val in _blocs(df):
+		modele = construire(nom)
+		modele.fit(df[LANDING_COLS].iloc[i_app], df[CIBLE].iloc[i_app])
+		val = df.iloc[i_val]
+		scores = modele.predict_proba(val[LANDING_COLS])[:, 1]
+		resultats["tous les passagers"].append(precision_top(val[CIBLE], scores))
+		scores_adultes = np.where(val["Age"] < age_min, -1.0, scores)
+		resultats["sans signaler les mineurs"].append(precision_top(val[CIBLE], scores_adultes))
+	return [
+		{"nom": essai, "precision_moyenne": round(float(np.mean(r)), 4)}
+		for essai, r in resultats.items()
 	]
