@@ -75,7 +75,7 @@ Le contrôle final (section 4.7) a été fait avant cette décision, avec l'arbr
 
 ## 4.5 Ce que coûtent les erreurs
 
-Sur 1 000 passagers, avec l'arbre de décision, 100 sont approchés :
+Sur 1 000 passagers, avec l'arbre de décision, 100 sont approchés (les chiffres sont les mêmes avec ou sans l'âge) :
 
 - **96 sont de vrais mécontents** : l'approche est utile.
 - **4 sont des fausses alertes** : des passagers satisfaits approchés pour rien, soit 180 € dépensés sans retour.
@@ -89,7 +89,7 @@ Trois critères : le bénéfice, la facilité à l'expliquer, et les données pe
 
 | | Règle simple | Arbre de décision | Gradient boosting |
 |---|---|---|---|
-| Bénéfice pour 1 000 passagers | 4 965 € | 5 551 € | 5 653 € |
+| Bénéfice pour 1 000 passagers | 4 965 € | 5 551 € (5 563 € sans l'âge) | 5 653 € |
 | Facile à expliquer | oui | oui, en une page | non |
 | Données nécessaires | motif du voyage | 6 informations, sans l'âge | 7 informations |
 
