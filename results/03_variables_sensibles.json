@@ -1,0 +1,17 @@
+{
+  "modele": "Gradient boosting",
+  "essais": [
+    {
+      "nom": "modèle de base",
+      "precision_moyenne": 0.9653
+    },
+    {
+      "nom": "sans l'âge",
+      "precision_moyenne": 0.9553
+    },
+    {
+      "nom": "avec le genre",
+      "precision_moyenne": 0.9653
+    }
+  ]
+}
