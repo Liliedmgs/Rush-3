@@ -1,0 +1,20 @@
+# Partie B : ce qui explique la satisfaction
+
+## Le tableau des facteurs
+
+| Facteur | Lié à la satisfaction ? | La compagnie peut agir ? | Est-ce une cause ? |
+|---|---|---|---|
+| Embarquement en ligne | Très fort : écart de 73,4 points ; reste important dans les 3 groupes ; 4e à la vérification par forêt | Oui : application, site | Cause probable : le lien reste fort à profil égal, et l'embarquement se passe avant le vol, donc l'effet de halo est peu probable. À confirmer par un test. |
+| Wifi à bord | Très fort : écart de 66,5 points ; 2e à la vérification par forêt | Oui : équipement des avions | |
+| Réservation en ligne | Moyen (36,2), mais très fort chez les voyageurs personnels en Eco (72,0) | Oui : site, application | |
+| Divertissement | Fort (50,9), mais disparaît chez les voyageurs personnels en Eco (−0,1) | Oui | |
+| Confort du siège | Fort (42,7), mais disparaît chez les voyageurs personnels en Eco (0,2) | Oui, mais très cher | |
+| Type de voyage | Le plus fort de tous à la vérification par forêt | Non | |
+| Classe | Très fort : 30,6 % de mécontents en Business, 81,4 % en Eco | En partie : prix, surclassement | |
+| Fidélité | Fort : 76,3 % de mécontents chez les non fidèles, 52,3 % chez les fidèles | Indirectement | |
+| Emplacement de la porte | Aucun (7,7) | Peu : dépend de l'aéroport | |
+| Horaires pratiques | Aucun (−6,1) | Peu | |
+
+## Les recommandations
+
+## Les limites
