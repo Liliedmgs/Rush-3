@@ -51,15 +51,15 @@ Le questionnaire a été collecté pour mesurer la satisfaction. L'utiliser pour
 
 ## 6.3 Le cas des enfants
 
-Les données comptent 7 931 mineurs, mécontents à 83,6 %. Le RGPD leur accorde une protection renforcée face au profilage (considérant 38). Règle retenue : aucun mineur n'est signalé. S'il voyage accompagné, c'est l'adulte qui peut être approché.
+Les données comptent 7 931 mineurs, mécontents à 83,6 %. Le RGPD leur accorde une protection renforcée face au profilage (considérant 38). Règle retenue : aucun mineur n'est signalé. S'il voyage accompagné, c'est l'adulte qui peut être approché. Cette règle coûte 69 € pour 1 000 passagers avec le modèle déployé (section 4.4), à peine plus de 1 % du gain.
 
 ## 6.4 Chaque information du modèle est-elle acceptable
 
 - Classe, distance du vol, retards : oui. Ce sont des informations sur le billet et le vol, pas sur la personne.
 - Client fidèle ou non : oui. C'est une donnée confiée par le client à la compagnie.
 - Motif du voyage : oui, seulement s'il a été déclaré à la réservation, jamais deviné.
-- Âge : oui, pour les adultes seulement. Il apporte 100 € de bénéfice pour 1 000 passagers.
-- Genre : non. Il n'améliore pas le modèle (96,5 % de précision avec ou sans), donc le principe de minimisation impose de l'écarter.
+- Âge : pas dans le modèle déployé. L'arbre retenu fait aussi bien sans lui (95,6 % de précision contre 95,5 %, section 4.4). L'âge sert seulement à appliquer la règle « aucun mineur signalé ».
+- Genre : non. Il n'améliore aucun des modèles testés, donc le principe de minimisation impose de l'écarter.
 - Notes du questionnaire : non. Elles sont inconnues à l'arrivée et serviraient à une autre fin que l'enquête.
 
 ## 6.5 Ce que voit l'agent sur un passager signalé
