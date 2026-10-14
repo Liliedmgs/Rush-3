@@ -69,10 +69,9 @@ def comparer(df):
 
 def essais_variables_sensibles(df, nom):
 	"""Ce que coûte le retrait de l'âge, ce qu'apporte l'ajout du genre."""
-	sans_age = [c for c in LANDING_NUMERIQUES if c != "Age"]
 	essais = {
 		"modèle de base": (LANDING_NUMERIQUES, LANDING_CATEGORIELLES),
-		"sans l'âge": (sans_age, LANDING_CATEGORIELLES),
+		"sans l'âge": (DEPLOIEMENT_NUMERIQUES, LANDING_CATEGORIELLES),
 		"avec le genre": (LANDING_NUMERIQUES, LANDING_CATEGORIELLES + ["Gender"]),
 	}
 	return [

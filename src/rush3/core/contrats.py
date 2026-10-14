@@ -10,7 +10,7 @@ from rush3.core.config import RESULTS
 CONTRATS = {
 	# Écrit par prediction (notebook 03), lu par le rapport
 	"03_comparaison_modeles": {
-		"capacite", "variables", "strategies", "modele_choisi",
+		"capacite", "variables", "strategies", "modele_choisi", "deploiement",
 	},
 	# Écrit par prediction (notebook 03), lu pour la partie protection des données
 	"03_variables_sensibles": {
