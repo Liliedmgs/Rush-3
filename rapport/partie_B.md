@@ -17,4 +17,25 @@
 
 ## Les recommandations
 
+Classées par priorité : d'abord ce qui est le plus sûr et le moins cher.
+
+1. **Améliorer l'embarquement et la réservation en ligne.** C'est le service le plus lié à la satisfaction (écart de 73,4 points), et il le reste dans les trois groupes de passagers. La réservation en ligne compte énormément pour les voyageurs personnels en Eco (72,0), qui sont les plus mécontents (89,8 %). Ces deux services se passent avant le vol, donc le lien est le plus crédible. Ce sont aussi des améliorations numériques, moins chères que des travaux dans les avions.
+
+2. **Améliorer le wifi à bord, mais d'abord sur quelques avions.** Le lien est très fort (écart de 66,5 points), et le wifi est le service le plus important à la vérification par forêt. Mais les données ont deux bizarreries (les passagers sans réponse sont presque tous satisfaits, et un écart de 100 points chez les voyageurs personnels en Eco). Avant d'équiper toute la flotte, il faut vérifier sur une partie des vols.
+
+3. **Réserver le siège et le divertissement aux voyageurs d'affaires.** Ces services comptent chez eux (divertissement 69,1, siège 47,4 en Business), mais pas du tout chez les voyageurs personnels en Eco (−0,1 et 0,2). Les améliorer partout coûterait cher sans rendre plus contents les passagers les plus mécontents.
+
+4. **Ne pas investir dans l'emplacement des portes ni les horaires.** Aucun lien avec la satisfaction (7,7 et −6,1).
+
+5. **Tester avant de généraliser.** Nos chiffres montrent ce qui va avec la satisfaction, pas ce qui la cause. Pour chaque amélioration, il faut la lancer sur une partie des vols seulement, puis comparer la satisfaction avec les autres vols.
+
+## Les limites
+
+- **Aucune cause n'est prouvée.** Ce sont des données d'observation : on a regardé des passagers, on n'a pas fait d'expérience.
+- **L'effet de halo.** Un passager content peut mettre de bonnes notes partout. Les services vécus pendant le vol (wifi, siège, divertissement) y sont les plus exposés.
+- **Les notes à 0.** Elles veulent dire « pas de réponse ». Les passagers concernés sont très différents des autres (99,7 % de satisfaits parmi ceux qui ont mis 0 au wifi), et on ne sait pas pourquoi.
+- **Seulement les passagers qui ont répondu.** Ceux qui ne répondent pas au questionnaire ne ressemblent peut-être pas aux autres.
+- **Seulement trois groupes de passagers comparés.** Les voyageurs en Eco Plus et les voyageurs personnels en Business n'ont pas été analysés à part.
+
+
 ## Les limites
