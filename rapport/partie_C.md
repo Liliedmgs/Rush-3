@@ -57,6 +57,8 @@ La règle simple, sans aucun calcul, fait déjà presque tout le travail : elle 
 
 Le genre n'apporte rien : il n'est pas utilisé. L'âge apporte 100 € pour 1 000 passagers : c'est ce chiffre qu'il faut mettre en face de la protection des mineurs (section 6.3).
 
+La règle « aucun mineur n'est signalé » (section 6.3) coûte très peu : avec l'arbre de décision, la précision passe de 95,5 % à 95,2 %, soit 30 € de moins pour 1 000 passagers (5 521 € au lieu de 5 551 €). La protection des enfants ne se paie presque pas.
+
 ## 4.5 Ce que coûtent les erreurs
 
 Sur 1 000 passagers, avec l'arbre de décision, 100 sont approchés :
@@ -88,14 +90,16 @@ Un voyageur personnel est presque toujours classé à risque, quelle que soit sa
 
 ## 4.7 Le résultat final sur le fichier de test
 
-*À compléter une fois le notebook 04 exécuté (une seule fois, modèle choisi).*
+Le modèle a été appris sur tout le fichier d'analyse, puis appliqué une seule fois aux 25 976 passagers du fichier de test, jamais vus jusque-là (56,1 % de mécontents).
 
 | Stratégie | Précision (validation) | Précision (test) | Bénéfice sur le test pour 1 000 passagers |
 |---|---|---|---|
-| Arbre de décision | 95,5 % | … | … |
-| Règle simple | 89,7 % | … | … |
+| Arbre de décision | 95,5 % | 96,1 % | 5 611 € |
+| Règle simple : voyageurs personnels | 89,7 % | 90,3 % | 5 034 € |
 
-Si les chiffres du test sont moins bons que ceux de la validation, ils sont rapportés tels quels et l'écart est commenté : le modèle n'est pas retouché après avoir vu le test.
+Les chiffres du test sont très proches de ceux de la validation, et même légèrement meilleurs : le modèle n'a pas appris par cœur le fichier d'analyse, il se généralise à de nouveaux passagers. L'arbre rapporte 577 € de plus que la règle simple pour 1 000 passagers, comme prévu en validation (586 €).
+
+Sur 1 000 passagers de test, 100 approchés : 96 vrais mécontents, 4 fausses alertes (156 €), et 465 mécontents non approchés faute de capacité.
 
 ## 4.8 Les limites
 

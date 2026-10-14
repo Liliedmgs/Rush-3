@@ -1,0 +1,18 @@
+{
+  "date_execution": "2026-10-14T14:43",
+  "modele": "Arbre de décision (4 niveaux)",
+  "variables": [
+    "Customer Type",
+    "Age",
+    "Type of Travel",
+    "Class",
+    "Flight Distance",
+    "Departure Delay in Minutes",
+    "Arrival Delay in Minutes"
+  ],
+  "n_passagers": 25976,
+  "capacite": 0.1,
+  "precision_modele": 0.9611,
+  "precision_regle_simple": 0.9034,
+  "taux_insatisfaits": 0.561
+}
