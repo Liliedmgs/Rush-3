@@ -211,7 +211,7 @@ But : classer les passagers à l'atterrissage pour approcher les 10 % les plus �
   | Classe, type de voyage, fidélité | oui | dossier de réservation |
   | Distance du vol | oui | |
   | Retard au départ, retard à l'arrivée | oui | très corrélés : en garder un seul ou les deux, à tester |
-  | Âge | oui | question des mineurs → décider avec A |
+  | Âge | oui | **décision : non utilisé par le modèle déployé** (n'améliore pas l'arbre) ; sert seulement à n'approcher aucun mineur |
   | Genre | oui | n'apporte presque rien (57,3 % contre 56,1 %) → l'exclure se défend bien |
   | Les 14 notes | **non** | questionnaire rempli après le vol |
 
@@ -793,7 +793,9 @@ for nom, donnees in essais.items():
 
 *Pourquoi :* la partie « protection des données » demande si chaque information est nécessaire. On mesure ce qu'on perd en retirant l'âge, et ce qu'on gagne en ajoutant le genre.
 
-*On doit voir :* base 0,965 (5 653 €) ; sans l'âge 0,955 (5 553 €) ; avec le genre 0,965 (5 653 €). **Le genre n'apporte rien : on ne l'utilise pas. L'âge apporte 100 € pour 1 000 passagers** : c'est le chiffre à mettre en face de la question des mineurs.
+*On doit voir :* base 0,965 (5 653 €) ; sans l'âge 0,955 (5 553 €) ; avec le genre 0,965 (5 653 €). **Le genre n'apporte rien : on ne l'utilise pas.**
+
+> **Mise à jour (14 octobre) :** ces chiffres sont ceux du gradient boosting. Refait avec le modèle retenu (l'arbre), l'âge n'apporte rien : 0,955 avec, 0,956 sans. Le modèle déployé est donc l'arbre **sans l'âge** (notebook 03, section 3.7) ; l'âge ne sert qu'à n'approcher aucun mineur. Avec cette règle, la version déployée fait 0,949, soit 5 494 € pour 1 000 passagers.
 
 **Cellule 3.7 : le coût des erreurs**
 
@@ -825,7 +827,7 @@ On écrit directement dans le rapport, en répondant aux trois questions du suje
 
 - 7 931 mineurs dans les données, mécontents à 83,6 % (cellule 1.7).
 - Le genre n'améliore pas le modèle (cellule 3.6) : il n'a aucune raison d'être utilisé.
-- L'âge apporte 100 € pour 1 000 passagers (cellule 3.6) : à peser face à la protection des mineurs.
+- L'âge n'apporte rien au modèle retenu (l'arbre) : il n'est pas utilisé par le modèle déployé et sert seulement à n'approcher aucun mineur (notebook 03, sections 3.4 et 3.7). Les 100 € ne valaient que pour le gradient boosting.
 
 ---
 
