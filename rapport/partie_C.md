@@ -49,15 +49,21 @@ La règle simple, sans aucun calcul, fait déjà presque tout le travail : elle 
 
 ## 4.4 Faut-il l'âge ? le genre ?
 
-| Version du modèle (gradient boosting) | Précision | Bénéfice pour 1 000 passagers |
+Le principe de minimisation impose de n'utiliser une donnée personnelle que si elle sert. Chaque modèle a donc été mesuré avec et sans l'âge, et avec le genre en plus.
+
+| Version | Arbre de décision (retenu) | Gradient boosting |
 |---|---|---|
-| Modèle retenu | 96,5 % | 5 653 € |
-| Sans l'âge | 95,5 % | 5 553 € |
-| Avec le genre | 96,5 % | 5 653 € |
+| Les 7 informations | 95,5 % · 5 551 € | 96,5 % · 5 653 € |
+| Sans l'âge | 95,6 % · 5 563 € | 95,5 % · 5 553 € |
+| Avec le genre | 95,5 % · 5 551 € | 96,5 % · 5 653 € |
 
-Le genre n'apporte rien : il n'est pas utilisé. L'âge apporte 100 € pour 1 000 passagers : c'est ce chiffre qu'il faut mettre en face de la protection des mineurs (section 6.3).
+Précision sur les 10 % approchés et bénéfice pour 1 000 passagers, validation croisée sur le fichier d'analyse.
 
-La règle « aucun mineur n'est signalé » (section 6.3) coûte très peu : avec l'arbre de décision, la précision passe de 95,5 % à 95,2 %, soit 30 € de moins pour 1 000 passagers (5 521 € au lieu de 5 551 €). La protection des enfants ne se paie presque pas.
+- **Le genre n'apporte rien**, avec les deux modèles : il n'est pas utilisé.
+- **L'âge n'apporte rien à l'arbre retenu** : sans lui, l'arbre fait aussi bien sur 3 des 5 parts et légèrement mieux sur les 2 autres (+12 € pour 1 000 passagers, un écart inférieur à la variation normale entre les parts). Il n'est utile qu'au gradient boosting (100 € pour 1 000 passagers).
+- **La règle « aucun mineur n'est signalé »** (section 6.3) coûte très peu à l'arbre : la précision passe de 95,5 % à 95,2 %, soit 30 € de moins pour 1 000 passagers.
+
+Conséquence pour la protection des données : avec l'arbre, l'âge n'est pas nécessaire. Le contrôle final (section 4.7) a été fait avec l'arbre à 7 informations, tel qu'il avait été choisi ; il n'a pas été refait, car le fichier de test ne s'utilise qu'une fois. Pour un déploiement réel, l'arbre sans l'âge est la version à privilégier : même bénéfice, et le modèle ne classe plus personne selon son âge. L'âge ne sert alors qu'à appliquer la règle « aucun mineur signalé ».
 
 ## 4.5 Ce que coûtent les erreurs
 
