@@ -1,20 +1,42 @@
 # Rush 3 - Satisfaction des passagers
 
+Rapport final : [`rapport/rapport.pdf`](rapport/rapport.pdf)
+
 ## Équipe
 
-| Membre | Responsabilité |
+| Membre | Code | Rapport |
+|---|---|---|
+| Lilie Domingues | Organisation du dépôt, nettoyage des données, exploration (notebook 01) | Parties 2 (données et exploration) et 6 (protection des données), assemblage et mise en page |
+| Sofia Soltane | Plan de travail, facteurs de satisfaction (notebook 02) | Parties 3 (facteurs) et 5 (recommandations) |
+| Adelaida Retuerto | Socle commun `src/rush3/core`, modèle prédictif (`src/rush3/prediction`, notebook 03), évaluation finale (notebook 04), tests | Partie 4 (repérer les passagers mécontents) |
+
+Le résumé pour la direction (partie 1) a été rédigé ensemble.
+
+## Organisation du dépôt
+
+| Dossier | Contenu |
 |---|---|
-| Lilie Domingues | Organisation du dépôt, nettoyage des données, exploration (notebook 01), protection des données |
-| Sofia Soltane | Plan de travail, nettoyage du fichier test, facteurs de satisfaction (notebook 02) |
-| Adelaida Retuerto | Socle commun `src/rush3/core`, modèle prédictif (`src/rush3/prediction`, notebook 03), évaluation finale (notebook 04), tests |
+| `data_raw/` | données d'origine (`train.csv`, `test.csv`), jamais modifiées |
+| `data_clean/` | `train.csv` nettoyé, produit par le notebook 01 |
+| `notebooks/` | 01 exploration, 02 facteurs, 03 modèles, 04 évaluation finale |
+| `src/` | code partagé par les notebooks (nettoyage, modèles, mesures) |
+| `tests/` | vérifications automatiques des règles du projet |
+| `figures/`, `results/` | graphiques et chiffres produits par les notebooks, repris dans le rapport |
+| `rapport/` | rapport final (`rapport.pdf`) et brouillons de chaque partie (`partie_A.md`, `partie_B.md`, `partie_C.md`) |
 
 ## Lancer le code
 
 1. `pip install -r requirements.txt` (installe aussi le paquet `rush3` ; à relancer après chaque `git pull` qui modifie `src/rush3/`, sinon « No module named rush3 »)
 2. `pytest` : vérifie le nettoyage, les mesures et les règles du projet.
-3. Exécuter dans l'ordre : `notebooks/01_exploration.ipynb`, `02_facteurs.ipynb`, `03_modeles.ipynb`, `04_evaluation_finale.ipynb`.
+3. Exécuter dans l'ordre : `notebooks/01_exploration.ipynb`, `02_facteurs.ipynb`, `03_modeles.ipynb`, `04_evaluation_finale.ipynb`. Chaque chiffre du rapport est produit par ces notebooks, avec une graine aléatoire fixe (`SEED = 42`) : deux exécutions donnent les mêmes résultats.
 
 `data_raw/test.csv` n'est jamais exploré. Il n'est lu qu'une seule fois, dans `04_evaluation_finale.ipynb`, où il est nettoyé avec les règles fixées sur `train.csv` puis utilisé pour mesurer la performance du modèle choisi.
+
+## Exploration et facteurs (notebooks 01 et 02)
+
+- **Nettoyage** : les notes à 0 signifient « pas de réponse » et sont traitées comme manquantes ; les 310 retards à l'arrivée manquants sont remplacés par le retard au départ.
+- **Facteurs** : pour chaque service, écart de satisfaction entre la note 5 et la note 1, recalculé dans trois groupes de passagers comparables, puis vérifié par une forêt aléatoire (`results/02_*.csv`).
+
 
 ## Prédiction des mécontents (notebooks 03 et 04)
 
