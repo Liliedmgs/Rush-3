@@ -1,0 +1,103 @@
+{
+  "capacite": 0.1,
+  "variables": [
+    "Customer Type",
+    "Age",
+    "Type of Travel",
+    "Class",
+    "Flight Distance",
+    "Departure Delay in Minutes",
+    "Arrival Delay in Minutes"
+  ],
+  "strategies": [
+    {
+      "nom": "Hasard",
+      "precision_moyenne": 0.5667,
+      "ecart_type": 0.0,
+      "precisions_par_bloc": [
+        0.5667,
+        0.5667,
+        0.5667,
+        0.5667,
+        0.5667
+      ]
+    },
+    {
+      "nom": "Règle simple (voyage personnel)",
+      "precision_moyenne": 0.8965,
+      "ecart_type": 0.0058,
+      "precisions_par_bloc": [
+        0.9062,
+        0.8936,
+        0.8898,
+        0.8999,
+        0.8932
+      ]
+    },
+    {
+      "nom": "Régression logistique",
+      "precision_moyenne": 0.9367,
+      "ecart_type": 0.0064,
+      "precisions_par_bloc": [
+        0.9413,
+        0.9413,
+        0.9418,
+        0.9336,
+        0.9254
+      ]
+    },
+    {
+      "nom": "Arbre de décision (4 niveaux)",
+      "precision_moyenne": 0.9551,
+      "ecart_type": 0.0032,
+      "precisions_par_bloc": [
+        0.9562,
+        0.9538,
+        0.9543,
+        0.9605,
+        0.9509
+      ]
+    },
+    {
+      "nom": "Gradient boosting",
+      "precision_moyenne": 0.9653,
+      "ecart_type": 0.0049,
+      "precisions_par_bloc": [
+        0.9658,
+        0.962,
+        0.9668,
+        0.9731,
+        0.9586
+      ]
+    }
+  ],
+  "modele_choisi": "Arbre de décision (4 niveaux)",
+  "deploiement": {
+    "modele": "Arbre de décision (4 niveaux)",
+    "variables": [
+      "Flight Distance",
+      "Departure Delay in Minutes",
+      "Arrival Delay in Minutes",
+      "Customer Type",
+      "Type of Travel",
+      "Class"
+    ],
+    "versions": [
+      {
+        "nom": "Arbre testé (7 informations)",
+        "precision_moyenne": 0.9551,
+        "precision_sans_mineurs": 0.9521
+      },
+      {
+        "nom": "Arbre déployé (sans l'âge)",
+        "precision_moyenne": 0.9563,
+        "precision_sans_mineurs": 0.9494
+      },
+      {
+        "nom": "Règle simple (voyage personnel)",
+        "precision_moyenne": 0.8965,
+        "precision_sans_mineurs": 0.8991
+      }
+    ]
+  }
+}

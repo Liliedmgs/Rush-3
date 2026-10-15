@@ -1,0 +1,31 @@
+{
+  "modele": "Arbre de décision (4 niveaux)",
+  "essais": [
+    {
+      "nom": "modèle de base",
+      "precision_moyenne": 0.9551
+    },
+    {
+      "nom": "sans l'âge",
+      "precision_moyenne": 0.9563
+    },
+    {
+      "nom": "avec le genre",
+      "precision_moyenne": 0.9551
+    }
+  ],
+  "essais_gradient_boosting": [
+    {
+      "nom": "modèle de base",
+      "precision_moyenne": 0.9653
+    },
+    {
+      "nom": "sans l'âge",
+      "precision_moyenne": 0.9553
+    },
+    {
+      "nom": "avec le genre",
+      "precision_moyenne": 0.9653
+    }
+  ]
+}
