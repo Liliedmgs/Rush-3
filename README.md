@@ -14,7 +14,7 @@
 2. `pytest` : vérifie le nettoyage, les mesures et les règles du projet.
 3. Exécuter dans l'ordre : `notebooks/01_exploration.ipynb`, `02_facteurs.ipynb`, `03_modeles.ipynb`, `04_evaluation_finale.ipynb`.
 
-`data_raw/test.csv` n'est jamais exploré. Il est seulement nettoyé par `src/nettoyer_test.py`, avec les règles fixées sur `train.csv` et sans regarder son contenu, puis utilisé une seule fois dans `04_evaluation_finale.ipynb` pour mesurer la performance du modèle choisi.
+`data_raw/test.csv` n'est jamais exploré. Il n'est lu qu'une seule fois, dans `04_evaluation_finale.ipynb`, où il est nettoyé avec les règles fixées sur `train.csv` puis utilisé pour mesurer la performance du modèle choisi.
 
 ## Prédiction des mécontents (notebooks 03 et 04)
 
